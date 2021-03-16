@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Array_Rearrangment {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n,x;
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            x=scanner.nextInt();
+            
+            List<Integer> a=new ArrayList<>();
+            List<Integer> b=new ArrayList<>();
+            
+            for(int j=0;j<n;j++){
+                
+                a.add(j,scanner.nextInt());
+                
+            }
+            
+            for(int j=0;j<n;j++){
+                
+                b.add(j,scanner.nextInt());
+                
+            }
+            
+            Collections.sort(a);
+            Collections.sort(b,Collections.reverseOrder());
+            
+            boolean flag=false;
+            
+            for(int j=0;j<n;j++){
+                
+                if( a.get(j)+b.get(j)<=x ){
+                    
+                    flag=true;
+                    
+                }else{
+                    
+                    flag=false;
+                    
+                    break;
+                    
+                }
+                
+            }
+            
+            if(flag==true){
+                
+                System.out.println("Yes");
+                
+            }else{
+                
+                System.out.println("No");
+                
+            }
+            
+        }
+        
+    }
+    
+}

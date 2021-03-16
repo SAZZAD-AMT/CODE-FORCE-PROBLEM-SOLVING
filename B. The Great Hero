@@ -1,0 +1,184 @@
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class B_The_Great_Hero {
+
+    public static class st {
+
+        int a, b;
+
+    }
+
+    public static class myCom implements Comparator<st> {
+
+        @Override
+        public int compare(st ob1, st ob2) {
+            
+            int f = ob1.a;
+            
+            int l = ob2.a;
+            
+            return f - l;
+
+        }
+
+    }
+
+    public static void main(String args[]) {
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        long testCases,A,B;
+        int n;
+       
+        testCases=scanner.nextInt();
+        
+        for( long t=0;t<testCases;t++ ){
+            
+            A=scanner.nextLong();
+            B=scanner.nextLong();
+            n=scanner.nextInt();
+            
+            long a[]=new long[n];
+            long h[]=new long[n];
+            
+            long damage=0;
+            
+            for(int i=0;i<n;i++){
+                
+                a[i]=scanner.nextLong();
+                
+            }
+            
+            for(int i=0;i<n;i++){
+                
+                h[i]=scanner.nextLong();
+                
+            }
+            
+            for(int i=0;i<n;i++){
+                
+                damage+=(h[i]+A-1)/A*a[i];
+               
+            }
+            
+            int enter=0;
+            
+            for(int i=0;i<n;i++){
+                
+                if( B-(damage-a[i])>0 ){
+                    
+                    System.out.println("YES");
+                    enter=1;
+                //    continue;
+                 
+                break;
+                
+                }
+                
+            }
+            
+            if(enter==0){
+            
+            System.out.println("NO");
+            
+            }
+            
+        }
+        
+    }
+
+}
+/*
+
+5
+3 17 1
+2
+16
+10 999 3
+10 20 30
+100 50 30
+1000 1000 4
+200 300 400 500
+1000 1000 1000 1000
+999 999 1
+1000
+1000
+999 999 1
+1000000000
+999
+
+*/
+
+/*
+
+1
+3 17 1
+2
+16
+
+*/
+
+/*
+
+1
+999 999 1
+1000000000
+999
+
+*/
+
+/*
+
+1
+11 2 2
+10 1
+2 999
+
+*/
+
+/*
+
+1
+11 2 2
+999 2
+1 10
+
+*/
+
+/*
+
+1
+1000000 1000000 1
+1000000
+1000000
+
+*/
+
+/*
+
+1
+1 1 1
+1
+1
+
+*/
+
+/*
+
+1
+999 999 1
+1000000
+999
+
+*/
+
+/*
+
+1
+1 10 2
+999 1
+1 10
+
+*/

@@ -1,0 +1,90 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class A_K_divisible_Sum {
+
+    static int testCases,n,k;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            String x[]=in.readLine().split("\\s");
+            
+            n=Integer.parseInt( x[0] );
+            k=Integer.parseInt( x[1] );
+            
+            solve( n,k );
+            
+        }
+        
+    }
+
+    private static void solve(int n, int k) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+     if(n==1){
+                System.out.println(k);
+                return;
+            }
+            if(n==k){
+                System.out.println(1);
+                return;
+            }
+            if(n<k){
+                int a=k/n;
+                int b=k%n;
+                if(b!=0) a++;
+                
+                System.out.println(a);
+                
+                return;
+            }
+            else{
+                int c=n/k;
+                int d=n%k;
+                if(d!=0) c++;
+                k*=c;
+                int a=k/n;
+                int b=k%n;
+                if(b!=0) a++;
+                
+                System.out.println(a);
+                
+                return;
+            }
+    
+}    
+       
+    }
+    
+
+/*
+
+4
+1 5
+4 3
+8 8
+8 17
+
+
+*/
+
+/*
+
+1
+1000000000 999999998
+
+*/
+
+/*
+
+1
+1000000000 999999996
+
+*/

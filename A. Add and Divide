@@ -1,0 +1,144 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+ 
+public class A_Add_and_Divide {
+ 
+    static FastRead fast=new FastRead();
+    
+    static int testCase;
+    
+    static long a,b;
+    
+    static void solve(long a,long b){
+        
+        long count=0,ans=Long.MAX_VALUE;
+        
+        for(long i=0;i*i<=a;i++){
+            
+            if( b==1 && i==0 ){
+                
+                continue;
+                
+            }
+            
+            count=i;
+            
+            long c=a;
+            
+            while( c>=1 ){
+                
+                c/=(b+i);
+                
+                count++;
+                
+            }
+            
+            ans=Math.min(ans, count);
+            
+        }
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCase=fast.nextInt();
+        
+        for(int i=0;i<testCase;i++){
+            
+            a=fast.nextLong();
+            
+            b=fast.nextLong();
+            
+            solve(a,b);
+            
+        }
+        
+    }
+    
+    static class FastRead{
+        
+        BufferedReader in;
+        StringTokenizer st;
+ 
+        public FastRead() {
+        
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine());
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+     
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+    }
+    
+}
+/*
+
+6
+9 2
+1337 1
+1 1
+50000000 4
+991026972 997
+1234 5678
+
+*/
+
+/*
+
+1
+991026972 997
+
+*/
+
+/*
+
+1
+1234 5678
+
+*/
+
+/*
+
+1
+50000000 4
+
+*/
+
+/*
+
+1
+1337 1
+
+*/

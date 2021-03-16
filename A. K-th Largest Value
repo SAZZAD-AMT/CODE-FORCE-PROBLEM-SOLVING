@@ -1,0 +1,120 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class A_K_th_Largest_Value {
+
+    static Scanner scanner=new Scanner();
+    
+    static int n,q,opt,x;
+    
+    public static void main(String[] args) throws IOException {
+        
+        n=scanner.nextInt();
+        q=scanner.nextInt();
+        
+        int a[]=new int[n+1];
+        
+        int cnt=0;
+        
+        for(int i=1;i<=n;i++){
+            
+            a[i]=scanner.nextInt();
+            
+            cnt+=a[i];
+            
+        }
+        
+        for(int i=1;i<=q;i++){
+            
+            opt=scanner.nextInt();
+            x=scanner.nextInt();
+            
+            if( opt==1 ){
+                
+                if( a[x]==1 ){
+                    
+                    cnt--;
+                    
+                }else{
+                    
+                    cnt++;
+                    
+                }
+                
+                a[x]=1-a[x];
+                
+            }else{
+                
+                if( cnt>=x ){
+                    
+                    System.out.println("1");
+                    
+                }else{
+                    
+                    System.out.println("0");
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine());
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+    }
+    
+}
+/*
+
+5 5
+1 1 0 1 0
+2 3
+1 2
+2 3
+2 1
+2 5
+
+*/

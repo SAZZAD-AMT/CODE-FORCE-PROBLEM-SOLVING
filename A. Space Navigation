@@ -1,0 +1,259 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class A_Space_Navigation {
+
+    static int testCases;
+    
+    static long px,py;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    static String s;
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            solve();
+            
+        }
+        
+    }
+
+    private static void solve() throws IOException {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    String x[]=in.readLine().split("\\s");
+    
+    px=Long.parseLong( x[0] );
+    py=Long.parseLong( x[1] );
+    
+    long tempPx=0,tempPy=0;
+    
+    s=in.readLine().toLowerCase();
+    
+    char ch[]=s.toCharArray();
+    
+    int indexY=0,indexX=0;
+    
+    for(int i=0;i<ch.length;i++){
+        
+       if( ch[i]=='u' || ch[i]=='d' ){
+           
+           indexY++;
+           
+       }
+        
+       if( ch[i]=='r' || ch[i]=='l' ){
+           
+           indexX++;
+           
+       }
+       
+    }
+    
+    int X[]=new int[indexX];
+    int Y[]=new int[ indexY ];
+    
+    indexY=0;
+    indexX=0;
+    
+    for(int i=0;i<ch.length;i++){
+        
+        switch (ch[i]) {
+            case 'u':
+                Y[indexY++]=1;
+                break;
+            case 'd':
+                Y[indexY++]=-1;
+                break;
+            case 'l':
+                X[indexX++]=-1;
+                break;
+            case 'r':
+                X[ indexX++ ]=1;
+                break;
+            default:
+                break;
+        }
+             
+    }
+    
+        int ansX=0,ansY=0;
+    
+        boolean boolX=false,boolY=false;
+        
+        for(int i=0;i<X.length;i++){
+         
+            if( px<ansX ){
+            
+                if( X[i]>0 ){
+                
+           // ansX-=X[i];
+            
+                }else{
+                
+                ansX+=X[i];
+                    
+            }
+            
+            if( ansX==px ){
+                
+                boolX=true;
+                
+                break;
+                
+            }
+            
+            }else if( px>ansX ){
+                
+                if( X[i]>0 ){
+                
+                ansX+=X[i];
+                
+                }else{
+                    
+             //       ansX-=X[i];
+                    
+                }
+                if( ansX==px ){
+                    
+                    boolX=true;
+                    
+                    break;
+                    
+                }
+                
+            }else if( px==ansX ){
+                
+                boolX=true;
+                
+                break;
+                
+            }
+            
+        }
+   
+        //System.out.println("X array: "+Arrays.toString(X));
+        
+        //System.out.println("Y array: "+Arrays.toString(Y));
+        
+        for(int i=0;i<Y.length;i++){
+         
+            if( py<ansY ){
+          
+                if( Y[i]>0 ){
+                
+          //  ansY-=Y[i];
+        
+                }else{
+                
+                    ansY+=Y[i];
+                    
+            }
+            
+            if( ansY==py ){
+                
+                boolY=true;
+                
+                break;
+                
+            }
+            
+            }else if( py>ansY ){
+             
+                if( Y[i]>0 ){
+                
+                ansY+=Y[i];
+                
+                }else{
+                
+               // ansY-=Y[i];
+                    
+            }
+                
+                if( ansY==py ){
+                    
+                    boolY=true;
+                    
+                    break;
+                    
+                }
+                
+            }else if( py==ansY ){
+                
+                boolY=true;
+                
+                break;
+                
+            }
+            
+        }
+ 
+        //System.out.println("ansX: "+ansX+" ansY: "+ansY);
+
+      //  System.out.println("boolX: "+boolX+" boolY: "+boolY);
+        
+        if( (boolX && boolY) || ( ansX==px && ansY==py ) ){
+            
+            System.out.println("YES");
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        //    System.out.println("anxX: "+ansX+" ansY: "+ansY);
+            
+        }
+                
+    }
+    
+}
+/*
+
+6
+10 5
+RRRRRRRRRRUUUUU
+1 1
+UDDDRLLL
+-3 -5
+LDLDLDDDR
+1 2
+LLLLUU
+3 -2
+RDULRLLDR
+-1 6
+RUDURUUUUR
+
+
+*/
+
+/*
+
+1
+1 1
+UDDDRLLL
+
+*/
+
+/*
+
+1
+1 2
+LLLLUU
+
+*/
+
+/*
+
+1
+-1 0
+L
+
+*/

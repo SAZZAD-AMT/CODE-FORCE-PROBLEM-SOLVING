@@ -1,0 +1,295 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+
+public class B_Two_Arrays_And_Swaps {
+
+    static int testCases,n,m;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            String x[]=in.readLine().split("\\s");
+            
+            n=Integer.parseInt( x[0] );
+            m=Integer.parseInt( x[1] );
+            
+            String a[]=in.readLine().split("\\s");
+            
+            String b[]=in.readLine().split("\\s");
+            
+            solve( a,b,m );
+            
+        }
+            
+    }
+
+    static void merge(int a[],int left,int right,int mid){
+        
+        int n1=mid-left+1;
+        
+        int n2=right-mid;
+        
+        int L[]=new int[n1];
+        
+        int R[]=new int[n2];
+        
+        for(int i=0;i<n1;i++){
+            
+            L[i]=a[left+i];
+            
+        }
+        
+        for( int j=0;j<n2;j++ ){
+            
+            R[j]=a[mid+1+j];
+            
+        }
+        
+        int i=0,j=0,k=left;
+        
+        while( i<n1 && j<n2 ){
+            
+            if( L[i]<=R[j] ){
+                
+                a[k]=L[i];
+                
+                i++;
+                
+            }else{
+                
+                a[k]=R[j];
+                
+                j++;
+                
+            }
+            
+            k++;
+            
+        }
+        
+        while( i<n1 ){
+            
+            a[k]=L[i];
+            
+            i++;
+            k++;
+            
+        }
+        
+        while( j<n2 ){
+            
+            a[k]=R[j];
+            
+            j++;
+            k++;
+            
+        }
+        
+    }
+    
+    static void mergeSort( int a[],int left,int right ){
+        
+        if( left>=right ){
+            
+            return;
+            
+        }
+        
+        int mid=(left+right)/2;
+        
+        mergeSort( a,left,mid );
+        
+        mergeSort( a,mid+1,right );
+        
+        merge( a,left,right,mid );
+        
+    }
+    
+     static void merge1(int a[],int left,int right,int mid){
+        
+        int n1=mid-left+1;
+        
+        int n2=right-mid;
+        
+        int L[]=new int[n1];
+        
+        int R[]=new int[n2];
+        
+        for(int i=0;i<n1;i++){
+            
+            L[i]=a[left+i];
+            
+        }
+        
+        for( int j=0;j<n2;j++ ){
+            
+            R[j]=a[mid+1+j];
+            
+        }
+        
+        int i=0,j=0,k=left;
+        
+        while( i<n1 && j<n2 ){
+            
+            if( L[i]<=R[j] ){
+                
+                a[k]=L[i];
+                
+                i++;
+                
+            }else{
+                
+                a[k]=R[j];
+                
+                j++;
+                
+            }
+            
+            k++;
+            
+        }
+        
+        while( i<n1 ){
+            
+            a[k]=L[i];
+            
+            i++;
+            k++;
+            
+        }
+        
+        while( j<n2 ){
+            
+            a[k]=R[j];
+            
+            j++;
+            k++;
+            
+        }
+        
+    }
+    
+    static void mergeSort1( int a[],int left,int right ){
+        
+        if( left>=right ){
+            
+            return;
+            
+        }
+        
+        int mid=(left+right)/2;
+        
+        mergeSort1( a,left,mid );
+        
+        mergeSort1( a,mid+1,right );
+        
+        merge1( a,left,right,mid );
+        
+    }
+    
+    private static void solve(String[] a, String[] b, int m) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+       int A[]=new int[a.length];
+       
+       for(int i=0;i<a.length;i++){
+           
+           A[i]=Integer.parseInt( a[i] );
+           
+       }
+       
+       int B[]=new int[b.length];
+       
+       for(int i=0;i<b.length;i++){
+           
+           B[i]=Integer.parseInt( b[i] );
+           
+       }
+       
+       mergeSort( A,0,A.length-1 );
+       
+       mergeSort1( B,0,B.length-1 );
+       
+       for(int i=0;i<B.length/2;i++){
+           
+           int temp=B[i];
+           B[i]=B[B.length-i-1];
+           B[ B.length-i-1 ]=temp;
+           
+       }
+       
+       // System.out.println("A: "+Arrays.toString(A));
+       
+       // System.out.println("B: "+Arrays.toString(B));
+        
+        for(int i=0;i<m;i++){
+            
+            if( B[i]>A[i] ){
+                
+                A[i]=B[i];
+                
+            }
+            
+        }
+        
+        int sum=0;
+        
+        for(int i=0;i<A.length;i++){
+            
+            sum+=A[i];
+            
+        }
+        
+        System.out.println(sum);
+        
+    }
+    
+}
+/*
+
+5
+2 1
+1 2
+3 4
+5 5
+5 5 6 6 5
+1 2 5 4 3
+5 3
+1 2 3 4 5
+10 9 10 10 9
+4 0
+2 2 4 3
+2 4 2 3
+4 4
+1 2 2 1
+4 4 5 4
+
+
+*/
+
+/*
+
+1
+5 5
+5 5 6 6 5
+1 2 5 4 3
+
+*/
+
+/*
+
+1
+2 1
+1 2
+3 4
+
+*/

@@ -1,0 +1,59 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class A_Most_Unstable_Array {
+
+    static int testCases;
+    
+    static long n,m;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            String x[]=in.readLine().split("\\s");
+            
+            n=Long.parseLong( x[0] );
+            m=Long.parseLong( x[1] );
+            
+            if( n==1 ){
+                
+                System.out.println(0);
+                
+            }else{
+                
+                if( n==2 ){
+                    
+                    System.out.println(m);
+                    
+                }else{
+                    
+                    System.out.println(2*m);
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+}
+/*
+
+5
+1 100
+2 2
+5 5
+2 1000000000
+1000000000 1000000000
+
+
+*/

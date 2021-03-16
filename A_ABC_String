@@ -1,0 +1,410 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+public class A_ABC_String {
+    
+    static Scanner scanner=new Scanner();
+    
+    static int testCases;
+    
+    static String s;
+    
+   static boolean areBracketsBalanced(String expr) 
+    { 
+        // Using ArrayDeque is faster than using Stack class 
+        Deque<Character> stack 
+            = new ArrayDeque<>(); 
+  
+        // Traversing the Expression 
+        for (int i = 0; i < expr.length(); i++)  
+        { 
+            char x = expr.charAt(i); 
+  
+            if (x == '(' || x == '[' || x == '{')  
+            { 
+                
+                stack.push(x); 
+                continue; 
+            } 
+  
+            
+            if (stack.isEmpty()) 
+                return false; 
+            char check; 
+            switch (x) { 
+            case ')': 
+                check = stack.pop(); 
+                if (check == '{' || check == '[') 
+                    return false; 
+                break; 
+  
+            case '}': 
+                check = stack.pop(); 
+                if (check == '(' || check == '[') 
+                    return false; 
+                break; 
+  
+            case ']': 
+                check = stack.pop(); 
+                if (check == '(' || check == '{') 
+                    return false; 
+                break; 
+            } 
+        } 
+  
+        // Check Empty Stack 
+        return (stack.isEmpty()); 
+    } 
+    
+      public static Map<Character, Integer> sortByValue(Map<Character, Integer> hm) 
+    { 
+        // Create a list from elements of HashMap 
+        List<Map.Entry<Character, Integer> > list = 
+               new LinkedList< >(hm.entrySet()); 
+  
+        // Sort the list 
+        Collections.sort(list, (Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) -> (o1.getValue()).compareTo(o2.getValue())); 
+          
+        // put data from sorted list to hashmap  
+        HashMap<Character, Integer> temp = new LinkedHashMap<>(); 
+        list.forEach((aa) -> {
+            temp.put(aa.getKey(), aa.getValue());
+        }); 
+        return temp; 
+    } 
+  
+     
+    static void solve(String s){
+ 
+         if( s.charAt(0)==s.charAt(s.length()-1) ){
+          
+          System.out.println("NO");
+          
+          return;
+          
+      }
+        
+         String t=s,p=s;
+         
+         char a=s.charAt(0),b=s.charAt(s.length()-1);
+         
+         //System.out.println("a: "+a+" b: "+b);
+         
+         t=t.replace(String.valueOf(t.charAt(0)), "(");
+         t=t.replace(String.valueOf(t.charAt(t.length()-1)), ")");
+         
+         p=p.replace(String.valueOf(p.charAt(0)), "(");
+         p=p.replace(String.valueOf(p.charAt(p.length()-1)), ")");
+         
+         for(int i=0;i<s.length();i++){
+             
+             if( t.charAt(i)!='(' && t.charAt(i)!=')' ){
+                 
+                   String x=")";
+                 
+               t=  t.replace(String.valueOf(t.charAt(i)), x);
+                 
+             }
+         
+         }
+         
+          for(int i=0;i<s.length();i++){
+             
+              if( p.charAt(i)!='(' && p.charAt(i)!=')' ){
+                 
+                   String x="(";
+                 
+               p=  p.replace(String.valueOf(p.charAt(i)), x);
+                 
+             }
+         
+         }
+         
+       //   System.out.println("t: "+t+" p: "+p);
+          
+          if( areBracketsBalanced(t) || areBracketsBalanced(p) ){
+              
+              System.out.println("YES");
+              
+          }else{
+              
+              System.out.println("NO");
+              
+          }
+          
+     /* s=s.replace(String.valueOf(s.charAt(0)), "(");
+      
+     s=s.replace(String.valueOf(s.charAt(s.length()-1)), ")");
+      
+      Stack<Character> stack=new Stack<>();
+  
+    for(int i=0;i<=s.length()-1;i++){
+        
+             switch (s.charAt(i)) {
+                 case '(':
+                     stack.push(s.charAt(i));
+                     break;
+                 case ')':
+                     if(!stack.isEmpty()){
+                         
+                         stack.pop();
+                         
+                     }else{
+                         
+                     System.out.println("NO");
+                         
+                         return;
+                         
+                     }break;
+                 default:
+                     if( !stack.isEmpty() ){
+                         
+                         s=s.replace(String.valueOf(s.charAt(i)), ")");
+                         
+                         stack.pop();
+                         
+                     }else{
+                         
+                         s=s.replace(String.valueOf(s.charAt(i)), "(");
+                         
+                         stack.push('(');
+                         
+                     }        break;
+             }
+ 
+    } 
+    
+    //    System.out.println("s: "+s);
+      
+      if(stack.isEmpty()){
+             
+              System.out.println("YES");
+              
+          }else{
+              
+              System.out.println("NO");
+              
+          }*/
+      
+       // System.out.println("s: "+s);
+      
+     /* if( areBracketsBalanced(s) ){
+          
+          System.out.println("YES");
+          
+      }else{
+          
+          System.out.println("NO");
+          
+      }*/
+      
+      /*for(int i=1;i<s.length();i++){
+          
+          if( s.charAt(i)!='(' && s.charAt(i)!=')' ){
+              
+              if( s.charAt(i-1)=='(' ){
+                  
+                  s=s.replace(String.valueOf(s.charAt(i)), ")");
+                  
+              }else{
+                  
+                  int j=i-1,val=0;
+                  
+                  for( j=i-1;j>=0;j--){
+                      
+                      if( s.charAt(j)=='(' ){
+                          
+                          s=s.replace(String.valueOf(s.charAt(i)), ")");
+                          
+                          val=1;
+                          
+                          break;
+                          
+                      }else if(s.charAt(j)==')' ){
+                          
+                          s=s.replace(String.valueOf(s.charAt(i)), "(");
+                          val=1;
+                          break;
+                          
+                      }
+                      
+                  }
+                  
+                  if( val==0 ){
+                      
+                     // System.out.println("here");
+                      
+                      System.out.println("NO");
+                      
+                      return;
+                      
+                  }
+                  
+              }
+              
+          }
+          
+      }*/
+      
+       // System.out.println("s: "+s);
+      
+     /* if( areBracketsBalanced(s) ){
+          
+          System.out.println("YES");
+          
+      }else{
+          
+          System.out.println("NO");
+          
+      }*/
+      
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            s=scanner.next();
+            
+            solve(s);
+            
+        }
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer( in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+    }
+    
+}
+/*
+
+4
+AABBAC
+CACA
+BBBBAC
+ABCA
+
+*/
+
+/*
+
+1
+AABBAC
+
+*/
+
+/*
+
+1
+ABCA
+
+*/
+
+/*
+
+1
+AAAABBCBCC 
+
+*/
+
+/*
+
+1
+ACACAB
+
+*/
+
+/*
+
+1
+ABBBBCCCC
+
+*/
+
+/*
+
+1
+CACABA
+
+*/
+
+/*
+
+1
+ACBBABBCACACCCACCCACCCCCACBCABBACBCCACAABBCBBBBACC
+
+*/
+
+/*
+
+1
+BBBACACACCBABAABCCBCCACBABCBAACBABABACACABBCBCACAB
+
+*/
+
+/*
+
+1
+ABBC
+
+*/
+
+/*
+
+1
+ABCC
+
+*/

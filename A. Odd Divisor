@@ -1,0 +1,58 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class A_Odd_Divisor {
+ 
+    static int testCases,n;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+testCases=Integer.parseInt( in.readLine() );
+        
+for(int i=0;i<testCases;i++){
+    
+    long n=Long.parseLong( in.readLine() );
+    
+  solve(n); 
+   
+}
+
+    }
+
+static void solve(long n){
+    
+    while( n%2==0 ){
+        
+        n/=2;
+        
+    }
+   
+    if( n>1 ){
+        
+        System.out.println("YES");
+        
+    }else{
+        
+        System.out.println("NO");
+        
+    }
+    
+}
+    
+}
+/*
+
+6
+2
+3
+4
+5
+998244353
+1099511627776
+
+
+*/

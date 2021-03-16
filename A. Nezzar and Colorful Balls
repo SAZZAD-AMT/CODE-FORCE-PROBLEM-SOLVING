@@ -1,0 +1,91 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+public class A_Nezzar_and_Colorful_Balls {
+ 
+    static int testCases,n;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    static void solve() throws IOException{
+        
+        n=Integer.parseInt( in.readLine() );
+        
+        String x[]=in.readLine().split("\\s");
+        
+Map<Integer,Integer> map=new HashMap<>();      
+       
+for(int i=0;i<x.length;i++){
+    
+    map.put( Integer.parseInt(x[i]) , 0);
+    
+}
+
+int ans=1;
+
+for(int i=0;i<x.length;i++){
+    
+    map.put( Integer.parseInt( x[i] ) , map.get( Integer.parseInt(x[i]) )+1 );
+    
+    ans=Math.max(ans, map.get( Integer.parseInt( x[i] ) ) );
+    
+}
+
+        System.out.println(ans);
+
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+        solve();    
+            
+        }
+        
+    }
+    
+}
+/*
+ 
+5
+6
+1 1 1 2 3 4
+5
+1 1 2 2 3
+4
+2 2 2 2
+3
+1 2 3
+1
+1
+ 
+*/
+/*
+
+5
+6
+1 1 1 2 3 4
+5
+1 1 2 2 3
+4
+2 2 2 2
+3
+1 2 3
+1
+1
+
+*/
+
+/*
+
+1
+6
+1 1 1 2 3 4
+
+*/

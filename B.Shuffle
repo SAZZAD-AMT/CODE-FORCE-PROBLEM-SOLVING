@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Shuffle {
+
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases;
+    
+    static long n,x,m,l,r;
+    
+    static void solve(){
+        
+        n=scanner.nextLong();
+        x=scanner.nextLong();
+        m=scanner.nextLong();
+        
+        long left=x,right=x;
+        
+        for(long i=0;i<m;i++){
+            
+            l=scanner.nextLong();
+            r=scanner.nextLong();
+            
+            if( left>r || right<l ){
+           
+                
+                
+            }else{
+                
+          left=Math.min(l, left);
+                
+          right=Math.max( right , r);
+          
+            }
+          
+        }
+        
+        System.out.println( right-left+1 );
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+        solve();    
+            
+        }
+        
+    }
+    
+}
+/*3
+6 4 3
+1 6
+2 3
+5 5
+4 1 2
+2 4
+1 2
+3 3 2
+2 3
+1 2
+*/

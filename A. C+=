@@ -1,0 +1,64 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class A_C_plus_equal {
+
+    static int testCases;
+    
+    static long a,b,n;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            String x[]=in.readLine().split("\\s");
+            
+            a=Long.parseLong( x[0] );
+            b=Long.parseLong( x[1] );
+            n=Long.parseLong( x[2] );
+            
+            solve(a,b,n);
+            
+        }
+        
+    }
+
+    private static void solve(long a, long b, long n) {
+   //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+   long ans=0;
+   
+   while( a<=n && b<=n ){
+       
+       long m=a,x=b;
+       
+       a+=b;
+       
+       b=Math.max( m , x);
+       
+     //  System.out.println("a: "+a+" b: "+b);
+       
+       ans++;
+       
+   }
+   
+        System.out.println(ans);
+   
+    }
+    
+}
+/*
+
+2
+1 2 3
+5 4 100
+
+
+*/

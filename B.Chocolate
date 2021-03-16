@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.Stack;
+ 
+public class Chocolate {
+ 
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int n,testCases;
+    
+    static void solve(){
+        
+        n=scanner.nextInt();
+        
+        int total=0;
+        
+        int a[]=new int[n];
+        
+        for(int i=0;i<n;i++){
+            
+            a[i]=scanner.nextInt();
+            
+        }
+        
+        for(int i=0;i<n;i++){
+            
+            if( a[i]==1 ){
+                
+                total++;
+                
+            }
+            
+        }
+        
+        if( total==0 ){
+         
+    //        if( n==1  ){
+                
+                System.out.println(0);
+                
+      //      }
+            
+            return;
+            
+        }
+        
+        long ans=1;
+        
+        Stack<Long> stack=new Stack<>();
+        
+        for(int i=0;i<n;i++){
+            
+            if( a[i]==1 ){
+                
+                if( !stack.isEmpty() ){
+                    
+                    ans*=i-stack.peek();
+                    
+                }
+                
+                stack.push( Long.valueOf( String.valueOf(i) ) );
+                
+            }
+            
+        }
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String[] args) {
+        
+    /*    testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){*/
+            
+        solve();    
+            
+       // }
+        
+    }
+    
+}
+/*5
+1 0 1 0 1*/

@@ -1,0 +1,159 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class A_Split_it {
+
+    static Scanner scanner=new Scanner();
+    
+    static int testCases,n,k;
+    
+    static String s;
+    
+    static void solve(){
+        
+        if( k==0 ){
+            
+            System.out.println("YES");
+            
+            return;
+            
+        }
+        
+        StringBuilder sb=new StringBuilder();
+        
+        sb.append(s);
+        
+  //      sb=sb.reverse();
+        
+ char ch[]=sb.toString().toCharArray();
+        
+ int l=0,r=ch.length-1,xx=0;
+ boolean b=true;
+ 
+ while( l<r ){
+     
+     if( ch[l]!=ch[r] ){
+         
+         b=false;
+         break;
+         
+     }
+     
+     l++;
+     r--;
+     xx++;
+     
+ }
+ 
+ if( k%2==0 && !b ){
+     
+     System.out.println("NO");
+     
+ }else{
+     
+     b=true;
+     
+     if( k>xx ){
+         
+         b=false;
+         
+     }
+     
+     if( n%2==0 && k==n/2 ){
+         
+         b=false;
+         
+     }
+     
+     if( b ){
+         
+         System.out.println("YES");
+         
+     }else{
+         
+         System.out.println("NO");
+         
+     }
+     
+ }
+ 
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            k=scanner.nextInt();
+            
+            s=scanner.next();
+            
+            solve();
+            
+        }
+        
+    }
+    
+     static class Scanner{
+    
+    BufferedReader in;
+
+   StringTokenizer st;    
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+    String next() throws IOException{
+        
+        while( st==null || !st.hasMoreElements() ){
+            
+            st=new StringTokenizer(in.readLine());
+            
+        }
+        
+        return st.nextToken();
+        
+    }
+   
+    int nextInt() throws IOException{
+        
+        return Integer.parseInt( next() );
+        
+    }
+   
+    long nextLong() throws IOException{
+        
+        return Long.parseLong( next() );
+        
+    }
+    
+}
+    
+}
+/*
+
+7
+5 1
+qwqwq
+2 1
+ab
+3 1
+ioi
+4 2
+icpc
+22 0
+dokidokiliteratureclub
+19 8
+imteamshanghaialice
+6 3
+aaaaaa
+
+*/

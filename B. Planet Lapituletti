@@ -1,0 +1,129 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class B_Planet_Lapituletti {
+
+    static Scanner scanner=new Scanner();
+    
+    static int reverse[]={0,1,5,-1,-1,2,-1,-1,8,-1};
+    
+    static int testCases,h,m,hh,mm;
+    
+    static PrintWriter out=new PrintWriter(System.out);
+    
+    static boolean check(int nh,int nm){
+        
+        if(reverse[nh%10]==-1 || reverse[ nh/10 ]==-1 || reverse[nm%10]==-1 || reverse[nm/10]==-1){
+            
+            return false;
+            
+        }
+        
+        int ih=reverse[nm%10]*10+reverse[nm/10];
+        
+        int im=reverse[nh%10]*10+reverse[nh/10];
+        
+        return (ih<h && im<m);
+        
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+        
+        for(int t=0;t<testCases;t++){
+            
+            h=scanner.nextInt();
+           // System.out.print(":");
+            m=scanner.nextInt();
+  
+         //   String y=scanner.next();
+            
+        String y=scanner.next();
+        
+        String x[]=y.split(":");
+        
+        hh=Integer.parseInt(x[0]);
+        mm=Integer.parseInt(x[1]);
+            
+            while( hh!=0 || mm!=0 ){
+                
+                if( check(hh,mm) ){
+                    
+                    break;
+                    
+                }
+                
+                if( mm==m-1 ){
+                    
+                    hh=(hh+1)%h;
+                    
+                }
+                
+                mm=(mm+1)%m;
+                
+            }
+            
+           System.out.printf("%d%d:%d%d\n",(hh/10),(hh%10),(mm/10),(mm)%10 );
+            
+        }
+        
+    }
+    
+     static class Scanner{
+    
+    BufferedReader in;
+
+   StringTokenizer st;    
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+    String next() throws IOException{
+        
+        while( st==null || !st.hasMoreElements() ){
+            
+            st=new StringTokenizer(in.readLine());
+            
+        }
+        
+        return st.nextToken();
+        
+    }
+   
+    int nextInt() throws IOException{
+        
+        return Integer.parseInt( next() );
+        
+    }
+   
+    long nextLong() throws IOException{
+        
+        return Long.parseLong( next() );
+        
+    }
+    
+}
+    
+}
+/*
+
+5
+24 60
+12:21
+24 60
+23:59
+90 80
+52:26
+1 100
+00:01
+10 10
+04:04
+
+*/

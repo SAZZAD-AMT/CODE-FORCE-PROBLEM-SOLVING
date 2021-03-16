@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class Reorder {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static double m;
+    
+    static void solve(){
+        
+        n=scanner.nextInt();
+        m=scanner.nextDouble();
+        
+        double a[]=new double[n];
+        
+        for(int i=0;i<n;i++){
+            
+            a[i]=scanner.nextDouble();
+            
+        }
+        
+        double sum=0.0;
+        
+        for(int i=0;i<n;i++){
+            
+            for(int j=i;j<n;j++){
+                
+                sum+=(a[j]/(double)(j+1));
+                
+            }
+            
+        }
+        
+        //System.out.println("sum1: "+sum);
+        
+        if( sum-(int)sum>0.5 ){
+            
+            sum=sum+(((int)sum+1)-sum);
+            
+        }
+        
+        //System.out.println("sum: "+sum);
+        
+        if( (int)(sum) ==(int)m){
+            
+            System.out.println("YES");
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            solve();
+            
+        }
+        
+    }
+    
+}

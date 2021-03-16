@@ -1,0 +1,89 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Sequence_Transformation_another {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static void solve(int a[],int n){
+        
+        Map<Integer,Integer> map=new HashMap<>();
+        
+        for(int i=0;i<n;i++){
+            
+            map.put(a[i], 0);
+            
+        }
+        
+        //System.out.println("map: "+String.valueOf(map));
+        
+     //   System.out.println("m: "+map.get( a[0] ));
+        
+        map.put(a[0], map.get(a[0])+1);
+        
+        //System.out.println("map: "+String.valueOf(map));
+        
+        for(int i=1;i<n;i++){
+            
+            if( a[i]==a[i-1] ){
+                
+                continue;
+                
+            }
+            
+            map.put(a[i], map.get(a[i])+1);
+            
+        }
+        
+        //System.out.println("map: "+String.valueOf(map));
+        
+        map.put( a[0] , map.get(a[0])-1);
+        map.put(a[n-1], map.get( a[n-1] )-1);
+        
+       // System.out.println("map: "+String.valueOf(map));
+        
+        int max=Integer.MAX_VALUE;
+        
+     for(int i=0;i<n;i++){
+         
+         try{
+         
+         max=Math.min(max, map.get(a[i]));
+         
+         }catch(Exception e){
+             
+             
+         }
+         
+     }
+        
+        System.out.println(max+1);
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            
+            int a[]=new int[n];
+            
+            for(int j=0;j<n;j++){
+                
+                a[j]=scanner.nextInt();
+                
+            }
+            
+            solve( a,n );
+            
+        }
+        
+    }
+    
+}

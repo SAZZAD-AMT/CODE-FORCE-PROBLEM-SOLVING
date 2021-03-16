@@ -1,0 +1,79 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Sum_of_Medians {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n,k;
+    
+    static List<Integer> list=new ArrayList<>();
+    
+    static void solve(){
+        
+        n=scanner.nextInt();
+        k=scanner.nextInt();
+       
+   for(int i=0;i<n*k;i++){
+       
+       list.add(i,scanner.nextInt());
+       
+   }     
+       
+   int y=list.size();
+   
+   long sum=0;
+           int m=0;
+   
+           if(n%2==0)
+           m=(int) Math.ceil( n/2 );
+   
+           else{
+               
+               m=(int) (Math.ceil(n/2)+1);
+               
+           }
+           
+   //        System.out.println("m: "+m);
+           
+   for(int i=0;i<k;i++){
+       
+       if(n%2==0)
+       sum+=list.get((int) (y-m-1));
+       
+       else
+           
+           sum+=list.get((int) (y-m));
+
+
+if(n%2!=0)       
+       y=(int) (y-m);
+
+else{
+
+    y=(int) (y-m-1);
+    
+}
+
+       
+   }
+   
+        System.out.println(sum);
+   
+       list.clear();
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            solve();
+            
+        }
+        
+    }
+    
+}

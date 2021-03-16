@@ -1,0 +1,311 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class B_Card_Deck {
+
+    static Scanner scanner=new Scanner();
+    
+    static int testCases,n;
+    
+    static long a[];
+    
+    static long ans[];
+    
+    static class position{
+        
+        long element;
+        int position;
+
+        public position() {
+        
+                        
+        }
+
+        public position(long element, int position) {
+            this.element = element;
+            this.position = position;
+        }
+        
+    }
+    
+    static void merge(position a[],int left,int right,int mid){
+        
+        int n1=mid-left+1,n2=right-mid;
+        
+        position []L=new position[n1];
+        
+        position []R=new position[n2];
+        
+        for(int i=0;i<n1;i++){
+            
+            L[i]=new position(-1,-1);
+            
+        }
+        
+        for(int i=0;i<n2;i++){
+            
+            R[i]=new position(-1,-1);
+            
+        }
+        
+        for(int i=0;i<n1;i++){
+            
+            L[i].element=a[left+i].element;
+            L[i].position=a[left+i].position;
+            
+        }
+        
+        for(int i=0;i<n2;i++){
+            
+            R[i].element=a[mid+1+i].element;
+            R[i].position=a[mid+1+i].position;
+            
+        }
+    
+        int i=0,j=0,k=left;
+        
+        while( i<n1 && j<n2 ){
+            
+            if( L[i].element>=R[j].element ){
+                
+                a[k].element=L[i].element;
+                a[k].position=L[i].position;
+                
+                i++;
+                
+            }else{
+                
+                a[k].element=R[j].element;
+                a[k].position=R[j].position;
+                
+                j++;
+                
+            }
+            
+            k++;
+            
+        }
+        
+        while( i<n1 ){
+            
+            a[k].element=L[i].element;
+                a[k].position=L[i].position;
+            
+            k++;
+            i++;
+            
+        }
+        
+        while( j<n2 ){
+            
+              a[k].element=R[j].element;
+                a[k].position=R[j].position;
+            
+                j++;
+                k++;
+                
+        }
+        
+    }
+    
+    static void mergeSort(position a[],int left,int right){
+        
+        if( left>=right ){
+            
+            return;
+            
+        }
+        
+        int mid=(left+right)/2;
+        
+        mergeSort( a,left,mid );
+        
+        mergeSort( a,mid+1,right );
+        
+        merge( a,left,right,mid );
+        
+    }
+    
+    static void solve(position p[]){
+        
+        position b[]=new position[p.length];
+        
+        //System.arraycopy(p, 0, b, 0, n);
+        
+        for(int i=0;i<n;i++){
+            
+            b[i]=new position( p[i].element,p[i].position );
+            
+        }
+        
+        mergeSort( b,0,b.length-1 );
+        
+       /* for( position i: b ){
+            
+            System.out.println(i.element+"      "+i.position);
+            
+        }
+        
+        System.out.println("orginal: ");
+        
+        for( position i: p ){
+            
+            System.out.println(i.element+"      "+i.position);
+            
+        }*/
+        
+       int in=0,x=0;
+       
+     //   System.out.println("n before: "+n);
+       
+       while( n>=0 ){
+           
+           if( b[in].position<n ){
+               
+               for(int i=b[in].position;i<n;i++){
+
+if( i>=0 ){
+                   
+                   ans[x++]=a[i];
+     
+}
+                   
+               }
+               
+               n=(n-( (n-1)-b[in].position+1 ));
+               
+           }
+           
+         //  System.out.println("n: "+n);
+           
+           in++;
+           
+           if( in>=p.length ){
+               
+               break;
+               
+           }
+           
+       }
+       
+       for(int i=0;i<ans.length-1;i++){
+           
+           System.out.print(ans[i]+"    ");
+           
+       }
+       
+        System.out.println();
+       
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+        
+        position p[]; 
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            
+            ans=new long[n+1];
+            
+            a=new long[n];
+            
+            p=new position[n];
+            
+            for(int j=0;j<n;j++){
+                
+                p[j]=new position();
+                
+            }
+            
+            for(int j=0;j<n;j++){
+                
+                a[j]=scanner.nextLong();
+                
+                p[j]=new position(a[j],j);
+                
+            }
+            
+            solve(p);
+            
+        }
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer( in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+    }
+    
+}
+/*
+
+1
+5
+1 5 2 4 3
+
+*/
+
+/*
+
+1
+6
+4 2 5 3 6 1
+
+*/
+
+/*
+
+4
+4
+1 2 3 4
+5
+1 5 2 4 3
+6
+4 2 5 3 6 1
+1
+1
+
+*/

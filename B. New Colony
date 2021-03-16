@@ -1,0 +1,120 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class B_New_Colony {
+
+    static int testCases,n,k;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader(System.in));
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for( int i=0;i<testCases;i++ ){
+            
+            solve();
+            
+        }
+        
+    }
+
+    private static void solve() throws IOException {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    String x[]=in.readLine().split("\\s");
+    
+    n=Integer.parseInt(x[0]);
+    k=Integer.parseInt( x[1] );
+    
+    String y[]=in.readLine().split("\\s");
+    
+    int a[]=new int[y.length];
+     
+    for(int i=0;i<y.length;i++){
+        
+        a[i]=Integer.parseInt( y[i] );
+          
+    }
+    
+int max=Integer.MIN_VALUE;   
+    
+for(int i=0;i<n;i++){
+    
+    max=Math.max(max, a[i]);
+    
+}
+
+int ans=n+1;
+
+if( max*ans<k ){
+    
+    System.out.println("-1");
+    
+    return;
+    
+}
+
+for(int i=0;i<k;i++){
+    
+    int to=-2;
+    
+    for(int j=0;j<n-1;j++){
+        
+        if( a[j]<a[j+1] ){
+            
+            to=j;
+            
+            break;
+            
+        }
+        
+    }
+    
+    ans=to+1;
+    
+    if( to==-2 ){
+        
+        break;
+        
+    }
+    
+    a[to]++;
+    
+}
+
+        System.out.println(ans);
+
+    }
+    
+}
+/*
+
+4
+4 3
+4 1 2 3
+2 7
+1 8
+4 5
+4 1 2 3
+3 1
+5 3 1
+
+*/
+
+/*
+
+1
+4 3
+4 1 2 3
+
+*/
+
+/*
+
+1
+10 81
+1 1 1 1 1 1 1 1 1 10
+
+*/

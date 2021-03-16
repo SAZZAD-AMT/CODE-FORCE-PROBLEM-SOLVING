@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Fair_Numbers {
+
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases;
+   static long n;
+    
+    static boolean GCD(long n){
+        
+        long temp=n;
+        
+        while(n>0){
+            
+            long k=n%10;
+            
+            if( k==0 ){
+                
+                n/=10;
+                
+                continue;
+                
+            }
+            
+            if( temp%k!=0 ){
+                
+                return false;
+                
+            }
+            
+            n/=10;
+            
+        }
+        
+        return true;
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextLong();
+            
+            while( !GCD( n) ){
+                
+                n++;
+                
+            }
+            
+            System.out.println(n);
+            
+        }
+        
+    }
+    
+}

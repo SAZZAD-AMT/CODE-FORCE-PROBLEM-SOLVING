@@ -1,0 +1,132 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class B_Odd_Sum_Segments {
+
+    static Scanner scanner=new Scanner();
+    
+    static int testCases,n,k,odd=0;
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+        
+        for(int t=0;t<testCases;t++){
+            
+            n=scanner.nextInt();
+            k=scanner.nextInt();
+            
+            long a[]=new long[n];
+            
+            odd=0;
+            
+            for(int i=0;i<n;i++){
+                
+                a[i]=scanner.nextLong();
+                
+                if( a[i]%2!=0 ){
+                    
+                    odd++;
+                    
+                }
+                
+            }
+            
+            solve( n,k,a );
+            
+        }
+        
+    }
+
+    private static void solve(int n, int k, long[] a) {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+     if( odd<k || odd%2!=k%2 ){
+         
+         System.out.println("NO");
+         
+         return;
+         
+     }
+     
+        System.out.println("YES");
+     
+        for(int i=0;i<n;i++){
+            
+            if( k==1 ){
+                
+                break;
+                
+            }
+            
+            if( a[i]%2==1 ){
+                
+                System.out.print((i+1)+" ");
+                
+                --k;
+                
+            }
+            
+        }
+        
+        System.out.println(n);
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+
+String next() throws IOException{
+    
+    while( st==null || !st.hasMoreElements() ){
+        
+        st=new StringTokenizer(in.readLine());
+        
+    }
+    
+    return st.nextToken();
+    
+}        
+        
+String nextLine() throws IOException{
+    
+    return in.readLine();
+    
+}
+
+int nextInt() throws IOException{
+    
+    return Integer.parseInt( next() );
+    
+}
+
+long nextLong() throws IOException{
+    
+    return Long.parseLong( next() );
+    
+}
+
+    }
+    
+}
+/*
+
+3
+5 3
+7 18 3 14 1
+5 4
+1 2 3 4 5
+6 2
+1 2 8 4 10 2
+
+*/

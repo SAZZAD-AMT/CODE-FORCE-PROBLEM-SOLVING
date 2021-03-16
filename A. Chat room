@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class Chat_room {
+
+    static Scanner scanner=new Scanner(System.in);
+    
+    static String s,t="hello";
+    
+    public static void main(String[] args) {
+        
+        s=scanner.next().toLowerCase();
+        
+        char []A=s.toCharArray();
+        char []B=t.toCharArray();
+        
+        int mat[][]=new int[s.length()+1][t.length()+1];
+        
+        for(int i=1;i<=A.length;i++){
+            
+            for(int j=1;j<=B.length;j++){
+                
+                if( A[i-1]==B[j-1] ){
+                    
+                    mat[i][j]=mat[i-1][j-1]+1;
+                    
+                }else{
+                    
+                    mat[i][j]=Math.max( mat[i][j-1] , mat[i-1][j] );
+                    
+                }
+                
+            }
+            
+        }
+        
+        int i=A.length,j=B.length,index=mat[A.length][B.length];
+        
+        StringBuilder sb=new StringBuilder();
+        
+        while( i>0 && j>0 ){
+            
+            if( A[i-1]==B[j-1] ){
+                
+                sb.append( A[i-1] );
+                
+            i--;
+            j--;
+            index--;    
+            
+            }else if( mat[i-1][j]>mat[i][j-1] ){
+                
+                i--;
+                
+            }else{
+                
+                j--;
+                
+            }
+            
+        }
+        
+        if( sb.reverse().toString().equalsIgnoreCase(t) ){
+            
+            System.out.println("YES");
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+}
+//ahhellllloou
+//hlelo

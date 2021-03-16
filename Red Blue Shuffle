@@ -1,0 +1,93 @@
+import java.util.Scanner;
+
+public class Red_Blue_Shuffle {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static void solve(){
+        
+        n=scanner.nextInt();
+        
+        String red=scanner.next();
+        String blue=scanner.next();
+        
+        int []r=new int[n];
+        
+        int []b=new int[n];
+        
+        for(int i=0;i<n;i++){
+            
+            r[i]=Integer.parseInt( String.valueOf( red.charAt(i) ) );
+            
+        }
+        
+        for(int i=0;i<n;i++){
+            
+            b[i]=Integer.parseInt( String.valueOf( blue.charAt(i) ) );
+            
+        }
+        
+        for(int i=0;i<n-1;i++){
+            
+            int temp=r[i];
+            
+            r[i]=r[i+1];
+            r[i+1]=temp;
+            
+        }
+        
+        for(int i=0;i<n-1;i++){
+            
+            int temp=b[i];
+            b[i]=b[i+1];
+            b[i+1]=temp;
+            
+        }
+        
+        int x=0,y=0;
+        
+        for(int i=0;i<n;i++ ){
+            
+            if( r[i]>b[i] ){
+                
+                x++;
+                
+            }else if( b[i]>r[i] ){
+                
+                y++;
+                
+            }
+            
+        }
+        
+        if(x>y){
+            
+            System.out.println("RED");
+            
+        }else if(y>x){
+            
+            System.out.println("BLUE");
+            
+        }else{
+            
+            System.out.println("EQUAL");
+            
+        }
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+        solve();    
+            
+        }
+        
+    }
+    
+}

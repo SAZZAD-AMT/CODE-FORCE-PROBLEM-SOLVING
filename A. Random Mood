@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Random_Mood {
+
+    static int n;
+    
+    static double p;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    static double happy=1.0;
+    
+    public static void main(String[] args) throws IOException {
+        
+        String []s=in.readLine().split("\\s");
+        
+        n=Integer.parseInt( s[0] );
+        
+        p=Double.parseDouble( s[1] );
+        
+        while(n>0){
+            
+            if( n%2==1 ){
+                
+                happy=happy*(1-p)+(1-happy)*p;
+                
+            }
+            
+            p=p*(1-p)+(1-p)*p;
+            
+            n/=2;
+            
+        }
+    
+        System.out.println(happy);
+    
+    }
+    
+}

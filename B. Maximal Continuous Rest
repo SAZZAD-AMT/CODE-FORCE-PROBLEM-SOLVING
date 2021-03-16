@@ -1,0 +1,209 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class B_Maximal_Continuous_Rest {
+
+    static Scanner scanner=new Scanner();
+    
+    static long n;
+    
+    static Map<Long,Long> map=new HashMap<>();
+    
+    public static void main(String[] args) throws IOException {
+        
+        n=scanner.nextLong();
+        
+       long index=1;
+        
+       while( index<=n ){
+           
+           map.put( index,scanner.nextLong());
+           
+           index++;
+           
+       }
+       
+ //       System.out.println("map: "+String.valueOf(map));
+       
+       if( !map.containsValue((long)1) ){
+           
+           System.out.println("0");
+           
+           return;
+           
+       }
+       
+      /* if( !map.containsValue((long)0) ){
+           
+           System.out.println(n);
+           
+           return;
+           
+       }*/
+     
+       long ans=0,count=0;
+      
+       if( map.get(n)==1 ){
+           
+           for(long i=n;i>=1;i--){
+               
+               if( map.get(i)==0 ){
+                   
+                   break;
+                   
+               }
+               
+               ans++;
+               
+           }
+           
+       }
+       
+      if( map.get(n)==1 && map.get((long)1)==1 ){
+          
+      for(long i=1;i<=n;i++){
+          
+          if( map.get(i)==0 ){
+              
+              break;
+              
+          }
+          
+          ans++;
+          
+      }    
+          
+      }
+       
+      for(long i=1;i<=n;i++){
+          
+          long tempAns=0;
+          
+          for(long j=i;j<=n;j++){
+         
+       /*       if( map.get(n)==1 && map.get((long)1)==1 && count==0 ){
+                  
+                  tempAns++;
+                  
+                  count=1;
+                  
+              }*/
+              
+              if( map.get(j)!=(long)1 ){
+                  
+                 // i=j;
+                  
+                  break;
+                  
+              }
+              
+              i++;
+              
+              tempAns++;
+              
+          }
+          
+          ans=Math.max(tempAns, ans);
+          
+      }
+       
+        System.out.println(ans);
+      
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine());
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+    }
+    
+}
+/*
+
+5
+1 0 1 0 1
+
+*/
+
+/*
+
+6
+0 1 0 1 1 0
+
+*/
+
+/*
+
+7
+1 0 1 1 1 0 1
+
+*/
+
+/*
+
+3
+0 0 0
+
+*/
+
+/*
+
+21
+1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
+
+*/
+
+/*
+
+23
+1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
+
+*/
+
+/*
+
+4
+0 1 0 1
+
+*/

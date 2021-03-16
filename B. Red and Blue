@@ -1,0 +1,108 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class B_Red_and_Blue {
+
+    static int testCases,n,m;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    static void solve() throws IOException{
+        
+        n=Integer.parseInt( in.readLine() );
+        
+        String a[]=in.readLine().split("\\s");
+        
+        m=Integer.parseInt( in.readLine() );
+        
+        String b[]=in.readLine().split("\\s");
+        
+        long dp[][]=new long[n+1][m+1];
+        
+        for(int i=0;i<n+1;i++){
+            
+            for(int j=0;j<m+1;j++){
+                
+                dp[i][j]=Long.MIN_VALUE;
+                
+            }
+            
+        }
+        
+        dp[0][0]=0;
+        
+        long ans=Long.MIN_VALUE;
+        
+        for(int i=0;i<n+1;i++){
+            
+            for(int j=0;j<m+1;j++){
+                
+                if( i<n ){
+                    
+                    dp[i+1][j]=Math.max( dp[i+1][j] , dp[i][j]+Long.parseLong( a[i] ));
+                    
+                }
+                
+                if( j<m ){
+                    
+                    dp[i][j+1]=Math.max(dp[i][j+1], dp[i][j]+Long.parseLong( b[j] ) );
+                    
+                }
+                
+                ans=Math.max( ans , dp[i][j] );
+                
+            }
+            
+            //System.out.println(ans);
+            
+        }
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+        solve();    
+            
+        }
+        
+    }
+    
+}
+/*
+
+4
+4
+6 -5 7 -3
+3
+2 3 -4
+2
+1 1
+4
+10 -3 2 2
+5
+-1 -2 -3 -4 -5
+5
+-1 -2 -3 -4 -5
+1
+0
+1
+0
+
+*/
+
+/*
+
+1
+8
+2 1 -3 1 0 2 0 0
+7
+3 -3 -4 -3 4 3 1
+
+*/

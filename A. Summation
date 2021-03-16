@@ -1,0 +1,104 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class A_Summation {
+
+    static Scanner scanner=new Scanner();
+    
+    static PrintWriter out=new PrintWriter(System.out);
+    
+    static int n;
+    
+    public static void main(String[] args) throws IOException {
+        
+        n=scanner.nextInt();
+
+long a[]=new long[n];        
+        
+for(int i=0;i<n;i++){
+    
+    a[i]=scanner.nextLong();
+    
+}
+
+long sum=0;
+
+for(long i: a){
+    
+    sum+=(i);
+    
+}
+
+out.print(  Math.abs(sum)  );
+
+out.flush();
+
+    }
+    
+ static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+    
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        double nextDouble() throws IOException{
+            
+            return Double.parseDouble( next() );
+            
+        }
+        
+    }    
+    
+}
+/*
+
+4
+7 2 1 3
+
+*/
+
+/*
+
+3
+-1 2 -3
+
+*/

@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class Main
+{
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static void solve(long a[],int n){
+        
+        boolean ok=true;
+        
+        long need=0;
+        
+        for(int i=0;i<n;i++){
+            
+            if( need>a[i] ){
+                
+                ok=false;
+                
+            }
+            
+            a[i+1]+=( a[i]-need );
+            
+            need++;
+            
+        }
+        
+        if( ok ){
+            
+            System.out.println("YES");
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        }
+        
+        
+    }
+    
+	public static void main(String[] args) {
+
+testCases=scanner.nextInt();
+		
+		for(int t=0;t<testCases;t++){
+		    
+		    n=scanner.nextInt();
+		    
+		    long a[]=new long[n+1];
+		    
+		    for(int i=0;i<n;i++){
+		        
+		        a[i]=scanner.nextLong();
+		        
+		    }
+		    
+		    solve(a,n);
+		    
+		}
+		
+	}
+}

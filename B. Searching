@@ -1,0 +1,166 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class B_Searching {
+
+    static Scanner scanner=new Scanner();
+    
+    static PrintWriter out=new PrintWriter(System.out);
+    
+    static int n;
+    
+    static long search;
+    
+    public static void main(String[] args) throws IOException {
+        
+        n=scanner.nextInt();
+        
+        long a[]=new long[n];
+        
+        for(int i=0;i<n;i++){
+            
+            a[i]=scanner.nextLong();
+            
+        }
+        
+        search=scanner.nextLong();
+        
+        for(int i=0;i<n;i++){
+            
+            if( a[i]==search ){
+                
+                out.print(i);
+                
+                out.flush();
+                
+                System.exit(0);
+                
+            }
+            
+        }
+        
+        int l=0,r=n-1,index=-1;
+        
+        while( r>l ){
+            
+            if( a[l]==search ){
+                
+                index=l;
+                
+                break;
+                
+            }
+            
+            if( a[r]==search ){
+                
+                index=r;
+                
+                break;
+                
+            }
+            
+            r--;
+            l++;
+            
+            if(l==r){
+            
+                if(a[l]==search){
+                
+                index=l;
+                
+                }
+                
+            }
+            
+        }
+        
+        out.print(index);
+        
+        out.flush();
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+    
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        double nextDouble() throws IOException{
+            
+            return Double.parseDouble( next() );
+            
+        }
+        
+    }    
+    
+}
+/*
+
+3
+3 0 1
+0
+
+*/
+
+/*
+
+5
+1 3 0 4 5
+10
+
+*/
+
+/*
+
+4
+2 3 2 1
+2
+
+*/
+
+/*
+
+7
+1 2 3 4 5 6 7
+4
+
+*/

@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class DZY_Loves_Strings {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static String s;
+    
+    static int k;
+    
+    static int ch[]=new int[26];
+    
+    public static void main(String[] args) {
+        
+s=scanner.next();
+
+k=scanner.nextInt();
+        
+for(int i=0;i<26;i++){
+    
+    ch[i]=scanner.nextInt();
+    
+}
+
+int maximum=Integer.MIN_VALUE;
+
+for(int i=0;i<26;i++){
+    
+    maximum=Math.max(ch[i], maximum);
+    
+}
+
+int ans=0;
+
+for(int i=0;i<s.length();i++){
+    
+    ans+=(i+1)*ch[s.charAt(i)-'a'  ];  
+    
+}
+
+int val=s.length()+1;
+
+for(int i=0;i<k;i++){
+    
+    ans+=val*maximum;
+    
+    val++;
+    
+}
+
+        System.out.println(ans);
+
+    }
+    
+}
+/*abc
+3
+1 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1*/

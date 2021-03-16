@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Subtract_or_Divide {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    public static void solve(int n){
+        
+        if( n==1 ){
+            
+            System.out.println(0);
+             
+        }else if(n==2){
+            
+            System.out.println(1);
+            
+        }else if(n==3){  
+        
+            System.out.println(2);
+            
+        }else{
+            
+if( n%2==0 ){
+    
+    System.out.println(2);
+    
+}else{
+    
+    System.out.println(3);
+    
+}            
+
+                
+            }
+            
+        }
+        
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            
+            solve(n);
+            
+        }
+        
+    }
+    
+}

@@ -1,0 +1,94 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class A_Game_23 {
+
+    static long n,m;
+    
+static Scanner scanner=new Scanner();    
+    
+    public static void main(String[] args) throws IOException {
+        
+        n=scanner.nextLong();
+        
+        m=scanner.nextLong();
+        
+        if( m%n!=0 ){
+            
+            System.out.println("-1");
+            
+            return;
+            
+        }
+        
+        m/=n;
+        
+        long ans=0;
+        
+        while( m%3==0 ){
+            
+            ans++;
+            
+            m/=3;
+            
+           // ans++;
+            
+        }
+        
+        while( m%2==0 ){
+            
+            ans++;
+            
+            m/=2;
+            
+           // ans++;
+            
+        }
+        
+        if( m>1 ){
+            
+            System.out.println("-1");
+            
+        }else{
+            
+            System.out.println(ans);
+            
+        }
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer( in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+    }
+    
+}
+//120 51840

@@ -1,0 +1,128 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class A_Three_swimmers {
+
+    static long testCases,p,a,b,c,A,B,C;
+    
+    static Scanner scanner=new Scanner();
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextLong();
+        
+        for(long i=0;i<testCases;i++){
+            
+            p=scanner.nextLong();
+            
+            a=scanner.nextLong();
+            
+            A=a-p%a;
+            
+            if( A==a ){
+                
+                A=0;
+                
+            }
+            
+            b=scanner.nextLong();
+            
+            B=b-p%b;
+            
+            if( B==b ){
+                
+                B=0;
+                
+            }
+            
+            c=scanner.nextLong();
+            
+            C=c-p%c;
+            
+            if( C==c ){
+                
+                C=0;
+                
+            }
+            
+            System.out.println( Math.min(A,  Math.min(B, C) ) ); 
+                  
+        }
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine());
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        double nextDouble() throws IOException{
+            
+            return Double.parseDouble(next());
+            
+        }
+        
+    }
+    
+}
+/*
+
+4
+9 5 4 8
+2 6 10 9
+10 2 5 10
+10 9 9 9
+
+*/
+
+/*
+
+1
+1000000 999999 999997 999998
+
+*/
+
+/*
+
+1
+1000000000000000000 999999999999999999 999999999999999999 999999999999999999
+
+*/

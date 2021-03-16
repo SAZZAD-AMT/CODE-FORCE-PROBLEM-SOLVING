@@ -1,0 +1,128 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class B_Minimal_Cost {
+
+    static Scanner scanner=new Scanner();
+    
+    static int testCases,n;
+    static long u,v;
+    
+    static PrintWriter out=new PrintWriter(System.out);
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+
+for(int i=0;i<testCases;i++){
+    
+    n=scanner.nextInt();
+    
+    u=scanner.nextLong();
+    v=scanner.nextLong();
+    
+    long a[]=new long[n];
+    
+    for(int j=0;j<n;j++){
+        
+        a[j]=scanner.nextLong();
+        
+    }
+    
+    long ans=Long.MAX_VALUE;
+    
+    for(int j=1;j<n;j++){
+        
+        if( Math.abs(a[j]-a[j-1])>=2 ){
+            
+            ans=0;
+            
+        }
+        
+        if( Math.abs( a[j]-a[j-1])==1 ){
+            
+            ans=Math.min(ans, Math.min(u, v)  );
+            
+        }
+        
+        if( a[j]==a[j-1] ){
+            
+            ans=Math.min(ans, v+Math.min(u, v)  );
+                
+        }
+        
+    }
+    
+    out.println(ans);
+    
+    out.flush();
+    
+}        
+        
+    }
+    
+      static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer(in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+    
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+        double nextDouble() throws IOException{
+            
+            return Double.parseDouble( next() );
+            
+        }
+        
+    }
+    
+}
+/*
+
+3
+2 3 4
+2 2
+2 3 4
+3 2
+2 4 3
+3 2
+
+*/

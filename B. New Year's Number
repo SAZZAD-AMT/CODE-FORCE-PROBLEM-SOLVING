@@ -1,0 +1,82 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class B_New_Year_s_Number {
+
+    static int testCase;
+    
+    static long n;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        int testCases = Integer.parseInt( in.readLine() );
+
+for(int i=0;i<testCases;i++){
+    
+    solve( Long.parseLong( in.readLine() ) );
+    
+}
+        
+    }
+
+    private static void solve(long n) {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+     if( n%2020==0 || n%2021==0 ){
+         
+         System.out.println("YES");
+         
+         return;
+         
+     }
+     
+     long y=n;
+     
+     while( n>0 ){
+         
+         n-=2020;
+     
+         if( n==2021 || n%2021==0 ){
+             
+             System.out.println("YES");
+             
+             return;
+             
+         }
+         
+     }
+       
+     while( y>0 ){
+         
+         y-=2021;
+         
+         if( y==2020 || n%2020==0 ){
+             
+             System.out.println("YES");
+             
+             return;
+             
+         }
+         
+     }
+     
+        System.out.println("NO");
+     
+    }
+    
+}
+/*
+
+5
+1
+4041
+4042
+8081
+8079
+
+
+*/

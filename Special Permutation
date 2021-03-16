@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Special_Permutation {
+
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static void solve(int n){
+        
+        List<Integer> list=new ArrayList<>();
+        
+        for(int i=1;i<=n;i++){
+            
+            list.add(i);
+            
+        }
+        
+       Collections.sort(list,Collections.reverseOrder());
+        
+     for(int i=0;i<list.size()-1;i++){
+         
+         if( list.get(i)==(i+1) ){
+             
+             Collections.swap(list, i, i-1);
+             
+         }
+         
+     }
+       
+     list.forEach((i) -> {
+         System.out.print(i+" ");
+        });
+     
+        System.out.println();
+     
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            
+            solve(n);
+            
+        }
+        
+    }
+    
+}

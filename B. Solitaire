@@ -1,0 +1,142 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class D_Solitaire {
+    
+    static Scanner scanner=new Scanner();
+    
+    static int n;
+    
+ //   static String s;
+    
+    static String s[]=new String[53];
+    static int dp[][][][]=new int[53][53][53][53];
+    
+ static String a[]={"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
+static String b[]={"S", "D", "H", "C"};
+    
+static boolean match(int x, int y)
+{
+    return s[x].charAt(0) == s[y].charAt(0) || s[x].charAt(1) == s[y].charAt(1);
+}
+ 
+static int rek(int i, int x, int y, int z)
+{
+    if (dp[i][x][y][z] != -1)
+        return dp[i][x][y][z];
+ 
+    dp[i][x][y][z] = 0;
+    if (i == 0 && match(x, z) && match(y, z))
+        dp[i][x][y][z] = 1;
+    else
+    {
+        int rez = 0;
+        if (i > 0 && match(i, z))
+            rez = Math.max(rez, rek(i - 1, z, x, y));
+        if (i > 0 && match(y, z))
+            rez = Math.max(rez, rek(i - 1, i, x, z));
+        dp[i][x][y][z] = rez;
+    }
+ 
+    return dp[i][x][y][z];
+}
+ 
+
+    public static void main(String[] args) throws IOException {
+        
+        n=scanner.nextInt();
+        
+        for (int[][][] dp1 : dp) {
+            for (int j = 0; j<dp.length; j++) {
+                for (int k = 0; k<dp.length; k++) {
+                    for (int l = 0; l<dp.length; l++) {
+                        dp1[j][k][l] = -1;
+                    }
+                }
+            }
+        }
+        
+        for(int i=1;i<=n;i++){
+            
+            s[i]=scanner.next();
+            
+        }
+        
+        if( n>=3 ){
+            
+             rek(n - 3, n - 2, n - 1, n);
+            
+        }
+        
+         if ((n >= 3 && dp[n - 3][n - 2][n - 1][n] == 1) || n == 1 || (n == 2 && match(1, 2))){
+        
+        System.out.println("YES");
+    }
+        
+         else{
+                 
+                 System.out.println("NO");
+                 
+                 }
+         
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer( in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+    }
+    
+}
+/*
+
+4
+2S 2S 2C 2C
+
+*/
+
+/*
+
+2
+3S 2C
+
+*/

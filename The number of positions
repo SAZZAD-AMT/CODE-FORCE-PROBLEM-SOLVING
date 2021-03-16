@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class The_number_of_positions {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int n,a,b,c,r;
+    
+    public static void main(String[] args) {
+        
+        n=scanner.nextInt();
+        a=scanner.nextInt();
+        b=scanner.nextInt();
+        
+        c=n-a-1;
+    if(c>b){
+        r=b+1;
+    }else{
+        r=c+1;
+    }
+        
+        System.out.println(r);
+    
+    }
+    
+}

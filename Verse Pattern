@@ -1,0 +1,110 @@
+import java.util.Scanner;
+
+public class Verse_Pattern {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int n;
+    
+    static boolean valid(String s,int n){
+        
+        int count=0;
+        
+       // System.out.println("s len: "+s.length());
+        
+        for(int i=0;i<s.length();i++){
+            
+            if( s.charAt(i)=='a' ||
+                    s.charAt(i)=='e' || 
+                    s.charAt(i)=='i' || 
+                    s.charAt(i)=='o' ||
+                    s.charAt(i)=='u' ||
+                    s.charAt(i)=='y'){
+                
+               // System.out.print(s.charAt(i)+" ");
+                
+                count++;
+                
+            }
+         //   System.out.println("character: "+s.charAt(i));
+        }
+        
+     //   System.out.println("\ncount: "+count+" n: "+n);
+        
+        if( count==n ){
+            
+            return true;
+            
+        }
+        
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        
+        n=scanner.nextInt();
+        
+        int pi[]=new int[n];
+        String s[]=new String[n];
+        
+        for(int i=0;i<n;i++){
+            
+            pi[i]=scanner.nextInt();
+            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+            
+        }
+        
+        for(int i=0;i<n;i++){
+            
+            s[i]=scanner.nextLine().toLowerCase();
+    scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        
+        }
+        
+        /*System.out.println("string's: ");
+        
+        for(String i: s){
+            
+            System.out.println(i+" ");
+            
+        }
+        
+        System.out.println();*/
+        
+        boolean b=false;
+        
+        for(int i=0;i<n;i++){
+            
+            if( valid(s[i],pi[i])==true ){
+                
+                b=true;
+                
+            }else{
+                
+                b=false;
+                
+                break;
+                
+            }
+            
+        }
+        
+        if( b==true ){
+            
+            System.out.println("YES");
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+}
+/*4
+13 11 15 15
+to be or not to be that is the question
+whether tis nobler in the mind to suffer
+the slings and arrows of outrageous fortune
+or to take arms against a sea of troubles*/

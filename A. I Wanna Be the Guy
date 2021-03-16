@@ -1,0 +1,106 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+public class A_I_Wanna_Be_the_Guy {
+
+    static int n,x,y;
+    
+    static Set<Integer> set=new HashSet<>();
+    
+    static Scanner scanner=new Scanner();
+    
+    public static void main(String[] args) throws IOException {
+        
+       n=scanner.nextInt();
+       
+       x=scanner.nextInt();
+       
+       for(int i=0;i<x;i++){
+           
+           set.add(scanner.nextInt());
+           
+       }
+       
+       y=scanner.nextInt();
+       
+       for(int i=0;i<y;i++){
+           
+           set.add(scanner.nextInt());
+           
+       }
+       
+       if(set.size()==n){
+           
+           System.out.println("I become the guy.");
+           
+       }else{
+           
+           System.out.println("Oh, my keyboard!");
+           
+       }
+       
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+        StringTokenizer st;
+
+        public Scanner() {
+        
+            in=new BufferedReader( new InputStreamReader(System.in) );
+            
+        }
+        
+        String next() throws IOException{
+            
+            while( st==null || !st.hasMoreElements() ){
+                
+                st=new StringTokenizer( in.readLine() );
+                
+            }
+            
+            return st.nextToken();
+            
+        }
+        
+        int nextInt() throws IOException{
+            
+            return Integer.parseInt( next() );
+            
+        }
+        
+        long nextLong() throws IOException{
+            
+            return Long.parseLong( next() );
+            
+        }
+        
+        String nextLine() throws IOException{
+            
+            return in.readLine();
+            
+        }
+        
+    }
+    
+}
+/*
+
+4
+3 1 2 3
+2 2 4
+
+*/
+
+/*
+
+4
+3 1 2 3
+2 2 3
+
+*/

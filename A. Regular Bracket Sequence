@@ -1,0 +1,130 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+
+public class A_Regular_Bracket_Sequence {
+
+    static int testCases;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            solve();
+            
+        }
+        
+    }
+
+    private static void solve() throws IOException {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    String s=in.readLine();
+    
+    if( s.length()%2!=0 ){
+        
+        System.out.println("NO");
+        
+        return;
+        
+    }
+    
+    int count=0;
+    
+    char ch[]=s.toCharArray();
+    
+    Stack<Character> stack=new Stack<>();
+    
+        switch (ch[0]) {
+            case ')':
+                System.out.println("NO");
+                
+                return;
+            case '(':
+                stack.push( ch[0] );
+                break;
+            default:
+                stack.push( ch[0] );
+                
+                count++;
+                
+                break;
+        }
+    
+    for(int i=1;i<ch.length;i++){
+        
+        switch (ch[i]) {
+            case '(':
+                stack.push( ch[i] );
+                break;
+            case ')':
+                
+                try{
+                
+                stack.pop();
+        
+                }catch(Exception e){
+                    
+                    
+                }
+                
+                break;
+            default:
+                if( count%2==1 ){
+                    
+                    try{
+                    
+                    stack.pop();
+     
+    //                count--;
+                    
+                    }catch(Exception e){
+                        
+                        
+                    }
+                    
+                   // count--;
+                    
+                }else{
+                    
+                    stack.push( ch[i] );
+                    
+                    count++;
+                    
+                }   break;
+        }
+        
+    }
+    
+    if( !stack.isEmpty() ){
+        
+        System.out.println("NO");
+        
+       // System.out.println("stack is: "+String.valueOf(stack) );
+        
+    }else{
+        
+        System.out.println("YES");
+        
+    }
+    
+    }
+    
+}
+/*
+
+5
+()
+(?)
+(??)
+??()
+)?(?
+
+
+*/

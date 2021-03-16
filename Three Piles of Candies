@@ -1,0 +1,38 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Three_Piles_of_Candies {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases;
+   
+   static String a,b,c;
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            a=scanner.next();
+            b=scanner.next();
+            c=scanner.next();
+            
+            BigInteger sum=new BigInteger("0");
+            
+            sum=sum.add( new BigInteger(a) ).add(new BigInteger(b)).add(new BigInteger(c));
+            
+            if( sum.mod(new BigInteger("2")).intValue()!=0 ){
+                
+                sum=sum.subtract(new BigInteger("1") );
+                
+            }
+            
+            System.out.println( sum.divide(new BigInteger("2")) );
+            
+        }
+        
+    }
+    
+}
