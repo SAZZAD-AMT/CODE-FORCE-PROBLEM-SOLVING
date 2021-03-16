@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class C_Even_Picture {
+
+    static int n;
+    
+    static class pair{
+        
+        long first,second;
+
+        public pair(long first, long second) {
+            this.first = first;
+            this.second = second;
+        }
+        
+    }
+    
+   static long x=1000000,y=1000000;
+    
+    static List<pair> list=new ArrayList<>();
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        n=Integer.parseInt( in.readLine() );
+        
+        list.add( new pair(x,y) );
+        
+        list.add( new pair( x+1,y ) );
+        
+        list.add( new pair( x,y-1 ) );
+        
+        list.add( new pair( x+1,y-1 ) );
+        
+        x++;
+        y--;
+        
+        while( n-->=1 ){
+            
+            list.add( new pair( x+1,y ) );
+            
+            list.add( new pair( x,y-1 ) );
+            
+            list.add( new pair( x+1,y-1 ) );
+            
+            x++;
+            y--;
+            
+        }
+        
+        System.out.println(list.size());
+        
+        for(pair i: list){
+            
+            System.out.println(i.first+" "+i.second);
+            
+        }
+        
+    }
+    
+}

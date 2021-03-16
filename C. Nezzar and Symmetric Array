@@ -1,0 +1,206 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class C_Nezzar_and_Symmetric_Array {
+
+    static int testCases,n;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            solve();
+            
+        }
+        
+    }
+
+    static class w implements Comparable<w> {
+        
+        long number;
+
+        public w(long number) {
+            this.number = number;
+        }
+
+        @Override
+        public int compareTo(w t) {
+        //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if( this.number>t.number ){
+            
+            return 1;
+            
+        }else if( this.number<t.number ){
+            
+            return -1;
+            
+        }
+        
+        return 0;
+        
+        }
+        
+    }
+    
+    private static void solve() throws IOException {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+      n=Integer.parseInt( in.readLine() );
+      
+      String x[]=in.readLine().split("\\s");
+      
+      Set<Long> set=new HashSet<>();
+      
+      for(int i=0;i<x.length;i++){
+          
+          set.add( Long.parseLong( x[i] ) );
+          
+      }
+      
+      if( set.size()!=n ){
+          
+          System.out.println("NO");
+           
+      }else{
+          
+//       /   Vector< Long > vector=new Vector<>();
+          
+          long v[]=new long[set.size()];
+          
+          int index=0;
+          
+        //  PriorityQueue<w> pq=new PriorityQueue<>();
+         
+          List<w> list=new ArrayList<>();
+          
+          for(long i: set){
+              
+              list.add( new w(i) );
+              
+          }
+           
+          Collections.sort(list);
+          
+           for (w i : list) {
+          
+         //      System.out.print(i.number+"  ");
+               
+               v[index++]=i.number;
+          
+           }
+          
+           //System.out.println();
+           
+          /*  index=0;
+           
+            for(long i: set){
+                
+                v[index++]=i;
+                
+            }*/
+            
+       //    System.out.println("v: "+Arrays.toString(v));
+           
+         // System.out.println("set: "+String.valueOf(set));
+          
+          long f=0,sum=0;
+          
+          for(long i=n-1;i>=0;i--){
+              
+         //     vector.set((int)i, vector.get((int) i)-sum );
+              
+          v[(int)i]-=sum;    
+              
+              /*if( vector.get((int) i)>0 && vector.get((int)i)%(2*(i+1))==0 ){
+                  
+                  vector.set((int)i, vector.get((int) i)/(2*(i+1)) );
+                  
+                  sum+=2*vector.get((int) i);
+                  
+              }else{
+                  
+                  f=1;
+                  
+                  break;
+                  
+              }*/
+              
+              if( v[(int)i]>0 && v[(int)i]%( 2*(i+1) )==0 ){
+                  
+                  v[(int)i]/=(2*(i+1));
+                  
+                  sum+=2*v[(int)i ];
+                  
+              }else{
+                  
+                //  System.out.println("break for: "+v[(int)i] );
+                  
+                  f=1;
+                  
+                  break;
+                  
+              }
+              
+          }
+          
+          if( f==0 ){
+              
+              System.out.println("YES");
+              
+          }else{
+              
+              System.out.println("NO");
+              
+          }
+          
+      }
+      
+    }
+    
+}
+
+/*
+
+1
+2
+7 11 7 11
+
+*/
+
+/*
+
+1
+2
+8 12 8 12
+
+*/
+
+/*
+
+6
+2
+8 12 8 12
+2
+7 7 9 11
+2
+7 11 7 11
+1
+1 1
+4
+40 56 48 40 80 56 80 48
+6
+240 154 210 162 174 154 186 240 174 186 162 210
+
+
+*/

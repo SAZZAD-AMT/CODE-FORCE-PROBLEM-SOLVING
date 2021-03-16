@@ -1,0 +1,58 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Barrels {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n,k;
+    
+    static void solve(int n,int k){
+        
+         Long a[]=new Long[n];
+            
+            for(Integer j=0;j<n;j++){
+                
+                a[j]=scanner.nextLong();
+               // scanner.next();
+            }
+            
+           Arrays.sort(a,Collections.reverseOrder() );
+        
+        /*   for(int j=0;j<n;j++){
+               
+               System.out.print(a[j]+" ");
+               
+           }
+           
+            System.out.println();*/
+           
+          for(int j=1;j<n && k!=0;j++){
+              
+              a[0]+=a[j];
+              
+              k--;
+              
+          }
+           
+            System.out.println(a[0]);
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            k=scanner.nextInt();
+            
+           solve(n,k);
+          
+        }
+        
+    }
+    
+}

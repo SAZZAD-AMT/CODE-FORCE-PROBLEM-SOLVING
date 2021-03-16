@@ -1,0 +1,100 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class C_Building_a_Fence {
+
+    static int testCases,n,k;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            solve();
+            
+        }
+        
+    }
+
+    private static void solve() throws IOException {
+   //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+   String x[]=in.readLine().split("\\s");
+   
+   n=Integer.parseInt( x[0] );
+   
+   k=Integer.parseInt( x[1] );
+   
+   String y[]=in.readLine().split("\\s");
+   
+   long a[]=new long[y.length];
+   
+   int index=0;
+   
+        for (String y1 : y) {
+            a[index++] = Long.parseLong(y1);
+        }
+   
+        long mx=a[0],mn=a[0];
+        
+        boolean ok=true;
+        
+   for(int i=1;i<a.length;i++){
+       
+       mn=Math.max(mn-k+1, a[i]);
+       
+       mx=Math.min(mx+k-1, a[i]+k-1);
+       
+       if( mn>mx ){
+           
+           ok=false;
+           
+           break;
+           
+       }
+       
+   }
+   
+   if( a[n-1]!=mn && a[n-1]!=mx ){
+       
+       ok=false;
+       
+   }
+   
+   if( ok ){
+       
+       System.out.println("YES");
+       
+   }else{
+       
+       System.out.println("NO");
+       
+   }
+   
+    }
+    
+}
+/*
+
+3
+6 3
+0 0 2 5 1 1
+2 3
+0 2
+3 2
+3 0 2
+
+*/
+
+/*
+
+1
+2 3
+0 2
+
+*/

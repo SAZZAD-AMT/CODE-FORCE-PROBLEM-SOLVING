@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Catching_Cheaters {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int n,m;
+    
+    static String s,t;
+    
+    static void solve(String s,String t){
+        
+        int [][]ans=new int[s.length()+1][t.length()+1];
+        
+        int a=Integer.MIN_VALUE;
+        
+        for(int i=1;i<=s.length();i++){
+            
+            for(int j=1;j<=t.length();j++){
+                
+                if( s.charAt(i-1)==t.charAt(j-1) ){
+                    
+        ans[i][j]=Math.max( ans[i][j] , ans[i-1][j-1]+2);
+                    
+                }else{
+                    
+                    ans[i][j]=Math.max(ans[i][j], Math.max(ans[i-1][j]-1, ans[i][j-1]-1) );
+                    
+                }
+            
+                a=Math.max(ans[i][j], a);
+                
+            }
+            
+        }
+        
+        System.out.println(a);
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        n=scanner.nextInt();
+        m=scanner.nextInt();
+        
+        s=scanner.next();
+        t=scanner.next();
+        
+        solve(s,t);
+        
+    }
+    
+}

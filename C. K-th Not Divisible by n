@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class K_th_Not_Divisible_by_n {
+    
+static Scanner scanner=new Scanner(System.in);    
+    
+static int testCases;
+
+static long n,k;
+
+static void solve(long n,long k){
+    
+   long h=( k+k/(n-1) );
+    
+   if( h%n==0 ){
+       
+       System.out.println(h-1);
+       
+   }else{
+       
+       System.out.println(h);
+       
+   }
+   
+}
+
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextLong();
+            k=scanner.nextLong();
+    
+            solve(n,k);
+            
+        }
+        
+    }
+    
+}

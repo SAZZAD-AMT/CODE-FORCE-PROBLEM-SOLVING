@@ -1,0 +1,170 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Vector;
+
+public class C_Painting_the_Fence {
+
+    static int n,q,a,b;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+
+static class pair{
+    
+    int first,second;
+
+        public pair() {
+
+            
+        }
+
+        public pair(int first, int second) {
+            this.first = first;
+            this.second = second;
+        }
+    
+}
+    
+static Vector<pair> vector=new Vector<>();
+
+    public static void main(String[] args) throws IOException {
+        
+    String x[]=in.readLine().split("\\s");
+        
+    n=Integer.parseInt( x[0] );
+    q=Integer.parseInt( x[1] );
+    
+    pair p[]=new pair[q];
+    
+    for(int i=0;i<q;i++){
+        
+        p[i]=new pair();
+        
+    }
+    
+    int cnt[]=new int[n];
+    
+    for(int i=0;i<q;i++){
+        
+        String y[]=in.readLine().split("\\s");
+        
+        a=Integer.parseInt( y[0] )-1;
+        
+        b=Integer.parseInt( y[1] )-1;
+        
+        p[i].first=a;
+        p[i].second=b;
+        
+        vector.add( new pair(a,b) );
+        
+      for( int j=p[i].first;j<=p[i].second;j++ ){
+          
+          cnt[j]++;
+          
+      }
+        
+    }
+    
+    int ans=0;
+    
+    for(int A=0;A<q;A++){
+        
+        int count_Positive=0;
+        
+        int []ones=new int[n];
+        
+        for(int i=p[A].first;i<=p[A].second;i++){
+            
+            --cnt[i];
+            
+        }
+        
+        for(int i=0;i<n;i++){
+            
+            if( cnt[i]>0 ){
+                
+                ++count_Positive;
+                
+            }
+            
+            if( cnt[i]==1 ){
+                
+                ++ones[i];
+                
+            }
+            
+        }
+        
+        for(int i=1;i<n;i++){
+            
+            ones[i]+=ones[i-1];
+            
+        }
+        
+        for(int B=A+1;B<q;B++){
+            
+            int lastOne=getSum( p[B].first,p[B].second,ones );
+            
+            ans=Math.max(ans, count_Positive-lastOne );
+            
+        }
+        
+        for(int i=p[A].first;i<=p[A].second;i++){
+            
+            ++cnt[i];
+            
+        }
+        
+    }
+    
+        System.out.println(ans);
+    
+    }
+    
+    static int getSum(int L,int R,int ones[]){
+      
+        if( L>=1 ){
+            
+            L=ones[L-1];
+            
+        }else{
+            
+            L=0;
+            
+        }
+      
+        return ones[R]-L;
+        
+    }
+    
+}
+/*
+
+7 5
+1 4
+4 5
+5 6
+6 7
+3 5
+
+*/
+
+/*
+
+4 3
+1 1
+2 2
+3 4
+
+*/
+
+/*
+
+4 4
+1 1
+2 2
+2 3
+3 4
+
+
+*/

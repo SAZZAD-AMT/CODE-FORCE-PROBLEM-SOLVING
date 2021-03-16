@@ -1,0 +1,123 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class C_Ball_in_Berland {
+
+    static int testCases;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) );
+    
+    static int a,b,k;
+  
+   static int n=(int)(4*Math.pow(10, 5)+5);
+  
+ static List< Integer > list[]=new ArrayList[ n ];
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+  
+        for(int i=0;i<n;i++){
+      
+      list[i]=new ArrayList<>();
+      
+  }
+        
+        for(int i=0;i<testCases;i++){
+            
+            String x[]=in.readLine().split("\\s");
+            
+            a=Integer.parseInt( x[0] );
+            b=Integer.parseInt( x[1] );
+            k=Integer.parseInt( x[2] );
+            
+            solve(a,b,k);
+            
+        }
+        
+    }
+
+    private static void solve(int a, int b, int k) throws IOException {
+   //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+   int u[]=new int[k];
+   
+   int v[]=new int[k];
+   
+  String x[]=in.readLine().split("\\s");
+   
+  String y[]= in.readLine().split("\\s");
+    
+  for(int i=0;i<a+b;i++){
+      
+      list[i]=new ArrayList<>();
+      
+  }
+  
+  for(int i=0;i<k;i++){
+      
+      u[i]=Integer.parseInt(x[i] );
+      
+      list[u[i]]=new ArrayList<>();
+      
+  }
+  
+  for(int j=0;j<k;j++){
+      
+      v[j]=Integer.parseInt( y[j] );
+      
+      list[ v[j]+a ]=new ArrayList<>();
+      
+  }
+  
+  for(int i=0;i<k;i++){
+      
+      list[ u[i] ].add( v[i]+a );
+      list[ v[i]+a ].add( u[i] );
+      
+  }
+  
+  long ans=0;
+  
+  for(int i=0;i<k;i++){
+      
+      int l=u[i],r=v[i]+a;
+      
+      int rem=(k-1)-list[ l ].size()-list[ r ].size()+2;
+      
+      ans+=rem;
+      
+  }
+  
+        System.out.println(ans/2);
+  
+    }
+    
+}
+/*
+
+3
+3 4 4
+1 1 2 3
+2 3 2 4
+1 1 1
+1
+1
+2 2 4
+1 1 2 2
+1 2 1 2
+
+
+*/
+
+/*
+
+1
+3 4 4
+1 1 2 3
+2 3 2 4
+
+*/

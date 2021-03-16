@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class ClassA {
+    
+    static Scanner scanner =new Scanner(System.in);
+    
+    static long a,b,c,testCases;
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            a=scanner.nextLong();
+            b=scanner.nextLong();
+            c=scanner.nextLong();
+            
+         //  int answer=(int) Math.sqrt( Math.abs(Math.pow(a, 2)+Math.pow(b, 2)-Math.pow(c, 2))  );
+           
+         long answer=(a+b+c)-1;
+         
+            System.out.println(answer);
+           
+        }
+        
+        
+    }
+    
+}

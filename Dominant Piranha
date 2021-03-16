@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Dominant_Piranha {
+    
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static List<Integer> list=new ArrayList<>();
+    
+    public static void main(String[] args) {
+        
+        testCases=scanner.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=scanner.nextInt();
+            
+            //int total=0;
+              
+            list=new ArrayList<>();
+            
+            for(int j=0;j<n;j++){
+                
+           list.add(j,scanner.nextInt());
+                
+            }
+           
+            int ok=0;
+            
+           for(int j=1;j<n;j++){
+               
+               if( !Objects.equals(list.get(j), list.get(0)) ){
+                   
+                   ok=1;
+               
+                   break;
+                   
+               }
+               
+           }
+            
+           if(ok==0){
+               
+               System.out.println("-1");
+               
+           }else{
+               
+               int max=Collections.max(list);
+               
+               for(int j=0;j<list.size();j++){
+                   
+                   if( list.get(j)==max ){
+                   
+                   if(j-1>=0 && list.get(j)>list.get(j-1)   ){
+                       
+                       System.out.println((j+1) );
+                   
+                       break;
+                   
+                   }
+                   
+                   if( (j+1)<n && list.get(j+1)<list.get(j) && list.get(j)==max ){
+                       
+                       System.out.println( (j+1) );
+                       
+                       break;
+                       
+                   }
+                   
+                   }
+                   
+               }
+               
+           }
+           
+           list.clear();
+           
+        }
+        
+    }
+    
+}

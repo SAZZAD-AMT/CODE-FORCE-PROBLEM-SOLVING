@@ -1,0 +1,124 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class C_Binary_String_Reconstruction {
+
+    static Scanner scanner=new Scanner();
+    
+    static int testCases,n;
+    
+    static String s;
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=scanner.nextInt();
+        
+        for(int t=0;t<testCases;t++){
+            
+            s=scanner.next();
+            
+            n=scanner.nextInt();
+            
+            int yes=0;
+            
+            char []ch=new char[s.length()];
+            
+            Arrays.fill(ch, '0');
+            
+            char S[]=s.toCharArray();
+            
+            for(int i=0;i<s.length();i++){
+                
+               if(S[i]=='1'){
+	
+                   if(i-n>=0 && (i-2*n<0 || S[i-2*n]=='1')) ch[i-n]='1';
+   
+        else if(i+n<s.length() && (i+2*n>=s.length() || S[i+2*n]=='1')) ch[i+n]='1';
+	
+   else{
+		System.out.println("-1");				
+                                                                       
+                                     yes=1;
+                                                                
+                                         break;
+                                                                
+        }
+                
+               }
+            
+            }
+               
+            if(yes==0){
+            
+            for(int i=0;i<ch.length;i++){
+                
+                System.out.print(ch[i]);
+                
+            }
+            
+            System.out.println();
+            
+            }
+            
+        }
+        
+    }
+    
+    static class Scanner{
+        
+        BufferedReader in;
+StringTokenizer st;
+
+        public Scanner() {
+
+            in=new BufferedReader( new InputStreamReader( System.in ) );
+            
+        }
+        
+String next() throws IOException{
+    
+    while( st==null || !st.hasMoreElements() ){
+        
+        st=new StringTokenizer( in.readLine() );
+        
+    }
+    
+    return st.nextToken();
+    
+}
+
+String nextLine() throws IOException{
+    
+    return in.readLine();
+    
+}
+
+int nextInt() throws IOException{
+    
+    return Integer.parseInt( next() );
+    
+}
+
+long nextLong() throws IOException{
+    
+    return Long.parseLong( next() );
+    
+}
+
+    }
+    
+}
+/*
+
+3
+101110
+2
+01
+1
+110
+1
+
+*/

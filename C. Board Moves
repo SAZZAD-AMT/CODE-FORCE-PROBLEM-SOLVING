@@ -1,0 +1,78 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class C_Board_Moves {
+
+    static int testCases;
+    
+    static long n;
+    
+    static BufferedReader in=new BufferedReader( new InputStreamReader( System.in ) ); 
+    
+    public static void main(String[] args) throws IOException {
+        
+        testCases=Integer.parseInt( in.readLine() );
+        
+        for(int i=0;i<testCases;i++){
+            
+            n=Long.parseLong( in.readLine() );
+            
+            solve(n);
+            
+        }
+        
+    }
+
+    private static void solve(long n) {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    long m=n;
+    
+    List<Long> list=new ArrayList<>();
+    
+    for(long i=1;i<=n-2;i++){
+        
+        long x=m*2+(m-2)*2;
+        
+        if( x>0 ){
+        
+        list.add(x);
+        
+        }
+        
+        m-=2;
+        
+    }
+    
+    int t=list.size();
+    
+      //  System.out.println("list: "+String.valueOf(list));
+    
+    long sum=0;
+    
+    for(long i: list){
+        
+        sum+=i*t;
+        
+        t--;
+        
+    }
+    
+        System.out.println(sum);
+    
+    }
+    
+}
+/*
+
+3
+1
+5
+499993
+
+
+*/

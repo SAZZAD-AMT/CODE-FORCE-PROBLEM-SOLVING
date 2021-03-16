@@ -1,0 +1,103 @@
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Permutation_Partitions {
+
+    static Scanner scanner=new Scanner(System.in);
+    
+    static int n,k;
+    
+    static BigInteger mod=new BigInteger("998244353");
+    
+    public static void main(String[] args) {
+        
+        n=scanner.nextInt();
+        k=scanner.nextInt();
+        
+        long a[]=new long[n];
+        
+        for(int i=0;i<n;i++){
+            
+            a[i]=scanner.nextLong();
+            
+        }
+        
+        long cc=0,x=n;
+        
+        long total=0;
+        
+        for(int i=0;i<k;i++){
+            
+            total+=x;
+            
+            x--;
+            
+        }
+        
+        int other=n-k+1;
+        
+  List<Long> list=new ArrayList<>();      
+  
+  //Set<Long> set=new HashSet<>();
+  
+        for(int i=0;i<n;i++){
+            
+            if( a[i]>=other ){
+  
+                list.add( Long.valueOf(String.valueOf(i)) );
+                
+            }
+            
+        }
+        
+       /* set.forEach((i) -> {
+            list.add(i);
+        });*/
+        
+        Collections.sort(list);
+           
+        long cost=1;
+        
+        BigInteger bigInteger=new BigInteger("1");
+        
+        for(int i=0;i<list.size()-1;i++){
+            
+            try{
+     
+                if( (list.get(i+1)-list.get(i))>0 ){
+                
+                cost*=( list.get(i+1)-list.get(i) );
+                
+            //  bigInteger=bigInteger.multiply( BigInteger.valueOf( list.get(i+1)-list.get(i) ) );
+        
+       BigInteger t=bigInteger.mod(mod).add(mod).mod(mod);     
+            
+       BigInteger s=BigInteger.valueOf( list.get(i+1)-list.get(i) ).mod(mod).add(mod).mod(mod);
+       
+  bigInteger=t.multiply(s ).mod(mod);
+            
+                }
+                
+            }catch(Exception e){
+                
+                
+            }
+            
+        }
+        
+        System.out.println(total+" "+bigInteger);
+        
+    }
+    
+}
+/*3 2
+2 1 3*/
+
+/*5 5
+2 1 5 3 4*/
+
+/*7 3
+2 7 3 1 5 4 6*/
